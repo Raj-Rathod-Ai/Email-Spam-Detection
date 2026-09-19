@@ -71,127 +71,49 @@ def start_silent_keepalive():
 start_silent_keepalive()
 
 # -----------------------------------------------------------------------------
-# 3. ADVANCED TAILWIND CSS & OFF-WHITE / SKY BLUE / LIGHT GREEN DESIGN SYSTEM
+# 3. ADVANCED INLINE & CUSTOM CSS (OFF-WHITE, SKY BLUE & LIGHT GREEN)
 # -----------------------------------------------------------------------------
 st.markdown("""
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* Base Off-White Theme Variables */
-:root {
-    --bg-canvas: #F8FAFC;
-    --card-surface: #FFFFFF;
-    --border-subtle: #E2E8F0;
-    --sky-primary: #0284C7;
-    --sky-hover: #0369A1;
-    --sky-light: #E0F2FE;
-    --sky-border: #BAE6FD;
-    --green-primary: #16A34A;
-    --green-light: #DCFCE7;
-    --green-border: #86EFAC;
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-}
-
+/* Global Canvas Reset */
 html, body, [class*="st-"] {
-    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
-    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif !important;
+    color: #0F172A;
 }
 
 .stApp {
-    background-color: #F8FAFC;
+    background-color: #F8FAFC !important;
 }
 
-/* Completely Hide Streamlit default clutter & sidebar */
+/* Completely remove Streamlit chrome & sidebar */
 #MainMenu, footer, header {
-    visibility: hidden;
+    visibility: hidden !important;
 }
 [data-testid="stSidebar"] {
     display: none !important;
 }
 
 .block-container {
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    max-width: 960px;
-    margin: 0 auto;
+    padding-top: 2rem !important;
+    padding-bottom: 4rem !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
 }
 
-/* Off-White Elevated Card Styles */
-.app-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 8px -2px rgba(15, 23, 42, 0.02);
-    margin-bottom: 1.5rem;
-}
-
-.app-card-sky {
-    background: linear-gradient(145deg, #FFFFFF 0%, #F0F9FF 100%);
-    border: 1.5px solid #BAE6FD;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 6px 24px -4px rgba(14, 165, 233, 0.12);
-    margin-bottom: 1.5rem;
-}
-
-.app-card-green {
-    background: linear-gradient(145deg, #FFFFFF 0%, #F0FDF4 100%);
-    border: 1.5px solid #BBF7D0;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 6px 24px -4px rgba(34, 197, 94, 0.1);
-    margin-bottom: 1.5rem;
-}
-
-.app-card-red {
-    background: linear-gradient(145deg, #FFFFFF 0%, #FEF2F2 100%);
-    border: 1.5px solid #FECACA;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 6px 24px -4px rgba(239, 68, 68, 0.1);
-    margin-bottom: 1.5rem;
-}
-
-/* Animations */
-@keyframes fadeInSlide {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
+/* Laser Scan Animation */
 @keyframes beamScan {
-    0% { transform: translateY(0); opacity: 0.7; }
-    50% { transform: translateY(140px); opacity: 1; }
-    100% { transform: translateY(0); opacity: 0.7; }
+    0% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(110px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 0.8; }
 }
 
 @keyframes pulseGlow {
     0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.08); opacity: 0.85; }
-}
-
-.fade-in {
-    animation: fadeInSlide 0.4s ease-out forwards;
-}
-
-.pulse-icon {
-    animation: pulseGlow 1.8s infinite ease-in-out;
-}
-
-/* Realistic Scanning / Reading Animation Card */
-.scanner-container {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 50%, #F0F9FF 100%);
-    border: 1.5px solid #38BDF8;
-    border-radius: 18px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px -4px rgba(14, 165, 233, 0.2);
-    margin: 1.75rem 0;
+    50% { transform: scale(1.15); opacity: 0.8; }
 }
 
 .scanner-laser {
@@ -202,22 +124,11 @@ html, body, [class*="st-"] {
     height: 3px;
     background: linear-gradient(90deg, transparent, #0284C7, #38BDF8, #0284C7, transparent);
     box-shadow: 0 0 14px #38BDF8;
-    animation: beamScan 2.4s infinite ease-in-out;
+    animation: beamScan 2.2s infinite ease-in-out;
 }
 
-.custom-progress-track {
-    background: #E2E8F0;
-    border-radius: 9999px;
-    height: 12px;
-    overflow: hidden;
-    position: relative;
-}
-
-.custom-progress-fill {
-    height: 100%;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, #38BDF8 0%, #0284C7 100%);
-    transition: width 0.3s ease;
+.pulse-icon {
+    animation: pulseGlow 1.6s infinite ease-in-out;
 }
 
 /* FIX: PROMINENT SKY-BLUE BUTTON */
@@ -230,7 +141,7 @@ div.stButton > button:focus {
     color: #FFFFFF !important;
     border: none !important;
     border-radius: 14px !important;
-    padding: 0.85rem 2.2rem !important;
+    padding: 0.9rem 2.2rem !important;
     font-size: 1.05rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.02em !important;
@@ -382,32 +293,30 @@ def run_inference(raw_text):
     }
 
 # -----------------------------------------------------------------------------
-# 5. TOP HEADER BANNER (OFF-WHITE, SKY BLUE & LIGHT GREEN)
+# 5. TOP HEADER BANNER (OFF-WHITE, SKY BLUE & LIGHT GREEN INLINE STYLING)
 # -----------------------------------------------------------------------------
 st.markdown("""
-<div class="app-card-sky fade-in">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div style="background: linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 100%); border: 1.5px solid #BAE6FD; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.08); margin-bottom: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div>
-            <div class="inline-flex items-center space-x-2 bg-sky-100/90 text-sky-800 border border-sky-200 px-3 py-1 rounded-full text-xs font-semibold mb-2">
-                <span class="w-2 h-2 rounded-full bg-sky-500 inline-block"></span>
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 10px;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #0284C7; display: inline-block;"></span>
                 <span>GRU Recurrent Neural Network</span>
-                <span class="text-sky-300">•</span>
-                <span class="text-emerald-700 font-bold">98.65% Accuracy</span>
+                <span style="color: #7DD3FC;">•</span>
+                <span style="color: #15803D; font-weight: 700;">98.65% Accuracy</span>
             </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 style="font-size: 26px; font-weight: 800; color: #0F172A; margin: 0; letter-spacing: -0.02em;">
                 Email Spam & Threat Detection
             </h1>
-            <p class="text-sm text-slate-600 mt-1 max-w-xl leading-relaxed">
-                Scan email messages in real-time to detect spam, phishing attempts, and fraud using deep gated recurrent memory units.
+            <p style="font-size: 14px; color: #475569; margin-top: 6px; margin-bottom: 0; line-height: 1.5; max-width: 580px;">
+                Scan email messages in real-time to detect phishing scams, spam, and financial fraud using deep recurrent memory units.
             </p>
         </div>
-        <div class="hidden sm:flex items-center">
-            <div class="bg-white/90 border border-emerald-200 rounded-xl px-3.5 py-2 text-right shadow-sm">
-                <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Engine Status</div>
-                <div class="flex items-center space-x-1.5 mt-0.5 justify-end">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-                    <span class="text-xs font-bold text-emerald-700">Online & Ready</span>
-                </div>
+        <div style="background: #FFFFFF; border: 1px solid #86EFAC; border-radius: 14px; padding: 10px 18px; text-align: right; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+            <div style="font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em;">Engine Status</div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 2px; justify-content: flex-end;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #22C55E; display: inline-block;"></span>
+                <span style="font-size: 12px; font-weight: 700; color: #15803D;">Online & Ready</span>
             </div>
         </div>
     </div>
@@ -430,10 +339,13 @@ tab_scan, tab_bench = st.tabs([
 # TAB 1: THREAT SCANNER
 # -----------------------------------------------------------------------------
 with tab_scan:
-    st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-    
-    st.markdown("<h3 class='text-lg font-bold text-slate-900 mb-1'>Analyze Email Text</h3>", unsafe_allow_html=True)
-    st.markdown("<p class='text-xs text-slate-500 mb-4'>Select a sample email preset or paste your own message below.</p>", unsafe_allow_html=True)
+    # Main Input Card
+    st.markdown("""
+    <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 20px; padding: 22px 26px; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); margin-bottom: 20px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Analyze Email Text</h3>
+        <p style="font-size: 13px; color: #64748B; margin: 0;">Select a sample email preset or paste your own message below to run deep recurrent neural inference.</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     preset_choice = st.selectbox(
         "Choose an email sample preset",
@@ -472,11 +384,7 @@ with tab_scan:
         label_visibility="collapsed"
     )
     
-    st.markdown("<div class='mt-3 mb-1'>", unsafe_allow_html=True)
     scan_button = st.button("🚀 Analyze Email Threat", use_container_width=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    st.markdown("</div>", unsafe_allow_html=True)
     
     # -------------------------------------------------------------------------
     # 7. ANIMATION (5-8 SECONDS REALISTIC NEURAL READING & SCANNING)
@@ -508,20 +416,20 @@ with tab_scan:
                     break
             
             scanner_box.markdown(f"""
-            <div class="scanner-container">
+            <div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 50%, #F0F9FF 100%); border: 1.5px solid #38BDF8; border-radius: 18px; padding: 24px; box-shadow: 0 6px 24px rgba(14, 165, 233, 0.15); margin: 24px 0;">
                 <div class="scanner-laser"></div>
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-3 h-3 rounded-full bg-sky-500 pulse-icon inline-block"></span>
-                        <span class="text-xs font-bold text-sky-900 uppercase tracking-wider">Analyzing Email Sequences</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="pulse-icon" style="width: 10px; height: 10px; background-color: #0284C7; border-radius: 50%; display: inline-block;"></span>
+                        <span style="font-size: 12px; font-weight: 700; color: #0369A1; text-transform: uppercase; letter-spacing: 0.05em;">Analyzing Email Sequences</span>
                     </div>
-                    <span class="text-xs font-mono font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">{pct}%</span>
+                    <span style="font-size: 13px; font-family: monospace; font-weight: 700; color: #0369A1; background: #FFFFFF; border: 1px solid #BAE6FD; padding: 2px 10px; border-radius: 14px;">{pct}%</span>
                 </div>
-                <div class="text-sm font-semibold text-slate-800 mb-3">
+                <div style="font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 14px;">
                     {stage_msg}
                 </div>
-                <div class="custom-progress-track">
-                    <div class="custom-progress-fill" style="width: {pct}%;"></div>
+                <div style="width: 100%; height: 12px; background-color: #E2E8F0; border-radius: 9999px; overflow: hidden;">
+                    <div style="width: {pct}%; height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #38BDF8 0%, #0284C7 100%); transition: width 0.2s ease;"></div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -536,151 +444,161 @@ with tab_scan:
         result = run_inference(email_input)
         
         # ---------------------------------------------------------------------
-        # VERDICT DISPLAY (OFF-WHITE, SKY BLUE & LIGHT GREEN)
+        # VERDICT DISPLAY (BULLETPROOF INLINE CSS)
         # ---------------------------------------------------------------------
         if result["is_spam"]:
             st.markdown(f"""
-            <div class="app-card-red fade-in">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 rounded-2xl bg-rose-100 border border-rose-200 flex items-center justify-center text-3xl shadow-sm">
+            <div style="background: linear-gradient(135deg, #FEF2F2 0%, #FFF5F5 100%); border: 1.5px solid #FECACA; border-radius: 18px; padding: 24px; margin-bottom: 22px; box-shadow: 0 4px 18px rgba(239, 68, 68, 0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 52px; height: 52px; background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px;">
                             🚨
                         </div>
                         <div>
-                            <div class="text-xs font-bold uppercase tracking-wider text-rose-700">Classification Result</div>
-                            <h2 class="text-2xl font-extrabold text-rose-900 tracking-tight">HIGH-RISK SPAM DETECTED</h2>
+                            <div style="font-size: 11px; font-weight: 700; color: #B91C1C; text-transform: uppercase; letter-spacing: 0.05em;">Classification Result</div>
+                            <div style="font-size: 22px; font-weight: 800; color: #7F1D1D; line-height: 1.2;">HIGH-RISK SPAM DETECTED</div>
                         </div>
                     </div>
-                    <div class="bg-white border border-rose-200 px-5 py-3 rounded-xl text-right shadow-sm">
-                        <div class="text-[11px] font-semibold text-rose-600 uppercase tracking-wider">Spam Probability</div>
-                        <div class="text-3xl font-extrabold text-rose-800 font-mono">{result['confidence']:.2f}%</div>
+                    <div style="background: #FFFFFF; border: 1px solid #FECACA; padding: 10px 18px; border-radius: 12px; text-align: right;">
+                        <div style="font-size: 11px; color: #991B1B; font-weight: 600; text-transform: uppercase;">Spam Probability</div>
+                        <div style="font-size: 26px; font-weight: 800; color: #991B1B; font-family: monospace;">{result['confidence']:.2f}%</div>
                     </div>
                 </div>
-                <p class="text-xs text-rose-900/80 mt-4 pt-3 border-t border-rose-200/70 leading-relaxed">
-                    This email contains recurring deceptive markers, urgency triggers, or scam patterns matching known threat databases. Do not open suspicious links or verify personal information.
-                </p>
+                <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #FEE2E2; font-size: 12px; color: #991B1B; line-height: 1.5;">
+                    This email contains recurring deceptive markers, urgency triggers, or scam patterns matching known threat databases. Do not open suspicious links or verify personal credentials.
+                </div>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown(f"""
-            <div class="app-card-green fade-in">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-3xl shadow-sm">
+            <div style="background: linear-gradient(135deg, #F0FDF4 0%, #F6FFF8 100%); border: 1.5px solid #BBF7D0; border-radius: 18px; padding: 24px; margin-bottom: 22px; box-shadow: 0 4px 18px rgba(34, 197, 94, 0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 52px; height: 52px; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px;">
                             🛡️
                         </div>
                         <div>
-                            <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Classification Result</div>
-                            <h2 class="text-2xl font-extrabold text-emerald-900 tracking-tight">LEGITIMATE EMAIL (HAM)</h2>
+                            <div style="font-size: 11px; font-weight: 700; color: #15803D; text-transform: uppercase; letter-spacing: 0.05em;">Classification Result</div>
+                            <div style="font-size: 22px; font-weight: 800; color: #14532D; line-height: 1.2;">LEGITIMATE EMAIL (HAM)</div>
                         </div>
                     </div>
-                    <div class="bg-white border border-emerald-200 px-5 py-3 rounded-xl text-right shadow-sm">
-                        <div class="text-[11px] font-semibold text-emerald-600 uppercase tracking-wider">Clean Confidence</div>
-                        <div class="text-3xl font-extrabold text-emerald-800 font-mono">{result['confidence']:.2f}%</div>
+                    <div style="background: #FFFFFF; border: 1px solid #BBF7D0; padding: 10px 18px; border-radius: 12px; text-align: right;">
+                        <div style="font-size: 11px; color: #15803D; font-weight: 600; text-transform: uppercase;">Clean Confidence</div>
+                        <div style="font-size: 26px; font-weight: 800; color: #15803D; font-family: monospace;">{result['confidence']:.2f}%</div>
                     </div>
                 </div>
-                <p class="text-xs text-emerald-900/80 mt-4 pt-3 border-t border-emerald-200/70 leading-relaxed">
-                    The sequence model evaluated the syntax, vocabulary, and token flow as consistent with authentic enterprise and personal correspondence.
-                </p>
+                <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #DCFCE7; font-size: 12px; color: #166534; line-height: 1.5;">
+                    The sequence model evaluated the syntax, vocabulary, and token flow as authentic correspondence consistent with genuine personal or enterprise communication.
+                </div>
             </div>
             """, unsafe_allow_html=True)
             
-        # Detailed Diagnostic Card
-        st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-        st.markdown("<h4 class='text-sm font-bold text-slate-900 mb-3'>Probability Spectrum & Threat Indicators</h4>", unsafe_allow_html=True)
-        
+        # ---------------------------------------------------------------------
+        # PROBABILITY SPECTRUM & THREAT INDICATORS (PREMIUM INLINE STYLING)
+        # ---------------------------------------------------------------------
         prob_pct = result["prob"] * 100
-        grad_color = "linear-gradient(90deg, #22C55E 0%, #38BDF8 50%, #EF4444 100%)"
+        # Clamped marker position so the pin stays elegantly within the track boundaries
+        marker_pos = max(2.5, min(prob_pct, 97.5))
         
-        st.markdown(f"""
-        <div class="flex justify-between items-center text-xs font-semibold text-slate-600 mb-2">
-            <span class="text-emerald-700 font-bold">● Clean (0%)</span>
-            <span class="font-mono text-slate-900 font-bold bg-sky-50 border border-sky-200 text-sky-800 px-3 py-1 rounded-full">{prob_pct:.2f}% Risk Score</span>
-            <span class="text-rose-700 font-bold">● Threat (100%)</span>
-        </div>
-        <div class="custom-progress-track mb-4">
-            <div class="meter-fill" style="width: {prob_pct}%; background: {grad_color}; height: 100%; border-radius: 9999px;"></div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        if result["detected_words"]:
-            chips = "".join([
-                f"<span class='inline-block bg-rose-50 text-rose-800 border border-rose-200 px-2.5 py-1 rounded-lg text-xs font-semibold mr-2 mb-2'>⚠ {w}</span>"
-                for w in result["detected_words"]
-            ])
-            st.markdown(f"""
-            <div class="pt-3 border-t border-slate-100">
-                <div class="text-xs text-slate-500 font-medium mb-2">Flagged Keywords in Message:</div>
-                <div class="flex flex-wrap">{chips}</div>
-            </div>
-            """, unsafe_allow_html=True)
+        if result["is_spam"]:
+            accent_color = "#DC2626"
+            score_badge = f'<span style="font-family: monospace; font-weight: 700; font-size: 13px; color: #991B1B; background: #FEF2F2; border: 1.5px solid #FECACA; padding: 5px 14px; border-radius: 20px;">🚨 {prob_pct:.2f}% Threat Score</span>'
         else:
-            st.markdown("""
-            <div class="pt-3 border-t border-slate-100 flex items-center space-x-2 text-xs text-emerald-700 font-medium">
-                <span>✓</span>
-                <span>No high-frequency spam trigger words found. Linguistic structure verified clean.</span>
-            </div>
-            """, unsafe_allow_html=True)
+            accent_color = "#16A34A"
+            score_badge = f'<span style="font-family: monospace; font-weight: 700; font-size: 13px; color: #15803D; background: #F0FDF4; border: 1.5px solid #BBF7D0; padding: 5px 14px; border-radius: 20px;">🛡️ {prob_pct:.2f}% Safe (Low Risk)</span>'
+        
+        # Keyword chips or clean message
+        if result["detected_words"]:
+            chips_html = "".join([
+                f'<span style="display: inline-flex; align-items: center; gap: 6px; background: #FEF2F2; color: #991B1B; border: 1.5px solid #FECACA; padding: 6px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; box-shadow: 0 1px 4px rgba(239, 68, 68, 0.06);">⚠️ {w}</span>'
+                for w in sorted(result["detected_words"])
+            ])
+            keyword_block = f"""<div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid #F1F5F9;"><div style="font-size: 13px; font-weight: 700; color: #475569; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><span>🔍</span> Flagged Trigger Keywords ({len(result['detected_words'])} detected):</div><div style="display: flex; flex-wrap: wrap; gap: 8px;">{chips_html}</div></div>"""
+        else:
+            keyword_block = """<div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid #F1F5F9;"><div style="background-color: #F0FDF4; border: 1.5px solid #BBF7D0; color: #15803D; padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 10px;"><span style="font-size: 16px;">✅</span><span><b>Zero Threat Trigger Keywords:</b> Lexical patterns and word tokens are verified authentic.</span></div></div>"""
             
-        st.markdown("</div>", unsafe_allow_html=True)
+        spectrum_html = f"""<div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 20px; padding: 26px; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); margin-bottom: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">📊</span><h4 style="font-size: 16px; font-weight: 800; color: #0F172A; margin: 0;">Probability Spectrum & Threat Indicators</h4></div>
+<div>{score_badge}</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; margin-bottom: 10px;">
+<span style="color: #15803D; background: #DCFCE7; border: 1px solid #86EFAC; padding: 3px 12px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #16A34A; display: inline-block;"></span>Clean (0%)</span>
+<span style="color: #64748B; font-size: 11px; font-weight: 600; background: #F1F5F9; border: 1px solid #E2E8F0; padding: 2px 10px; border-radius: 10px;">Decision Threshold (50%)</span>
+<span style="color: #B91C1C; background: #FEE2E2; border: 1px solid #FCA5A5; padding: 3px 12px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #DC2626; display: inline-block;"></span>Threat (100%)</span>
+</div>
+<div style="position: relative; width: 100%; height: 16px; background: linear-gradient(90deg, #22C55E 0%, #38BDF8 40%, #FBBF24 75%, #EF4444 100%); border-radius: 9999px; margin-top: 8px; margin-bottom: 22px; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08); border: 1px solid #CBD5E1;">
+<div style="position: absolute; top: 50%; left: {marker_pos}%; transform: translate(-50%, -50%); width: 28px; height: 28px; border-radius: 50%; background: #FFFFFF; border: 3.5px solid {accent_color}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22); display: flex; align-items: center; justify-content: center; transition: left 0.6s ease;">
+<div style="width: 8px; height: 8px; border-radius: 50%; background: {accent_color};"></div>
+</div>
+</div>
+{keyword_block}
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; padding-top: 16px; border-top: 1px solid #F1F5F9; text-align: center;">
+<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 12px;">
+<div style="color: #64748B; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Model Probability</div>
+<div style="font-family: monospace; font-weight: 800; color: #0F172A; font-size: 15px; margin-top: 3px;">{result['prob']:.4f}</div>
+</div>
+<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 12px;">
+<div style="color: #64748B; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Lexical Tokens</div>
+<div style="font-family: monospace; font-weight: 800; color: #0F172A; font-size: 15px; margin-top: 3px;">{result['token_count']} words</div>
+</div>
+<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 12px;">
+<div style="color: #64748B; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Confidence</div>
+<div style="font-family: monospace; font-weight: 800; color: #0284C7; font-size: 15px; margin-top: 3px;">{result['confidence']:.2f}%</div>
+</div>
+</div>
+</div>"""
+        st.markdown(spectrum_html, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # TAB 2: MODEL PERFORMANCE & BENCHMARKS
 # -----------------------------------------------------------------------------
 with tab_bench:
-    st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-    st.markdown("<h3 class='text-lg font-bold text-slate-900 mb-1'>Architecture & Model Benchmarks</h3>", unsafe_allow_html=True)
-    st.markdown("<p class='text-xs text-slate-500 mb-4'>Rigorous evaluation comparison across SimpleRNN, LSTM, and the deployed GRU model trained on 83,448 emails.</p>", unsafe_allow_html=True)
-    
-    b_col1, b_col2, b_col3 = st.columns(3)
-    
-    with b_col1:
-        st.markdown("""
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Baseline</div>
-            <h4 class="text-base font-bold text-slate-800 mt-1">Simple RNN</h4>
-            <div class="mt-3 space-y-1.5 text-xs">
-                <div class="flex justify-between"><span>Accuracy:</span><span class="font-mono font-bold">97.69%</span></div>
-                <div class="flex justify-between"><span>Spam Precision:</span><span class="font-mono">97.82%</span></div>
-                <div class="flex justify-between"><span>Spam Recall:</span><span class="font-mono">97.80%</span></div>
-                <div class="flex justify-between"><span>Spam F1:</span><span class="font-mono">97.81%</span></div>
+    st.markdown("""
+    <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Architecture & Model Benchmarks</h3>
+        <p style="font-size: 13px; color: #64748B; margin: 0 0 20px 0;">Evaluation comparison across SimpleRNN, LSTM, and the deployed GRU model trained on 83,448 emails.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px;">
+                <div style="font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em;">Baseline</div>
+                <div style="font-size: 16px; font-weight: 700; color: #0F172A; margin-top: 4px;">Simple RNN</div>
+                <div style="margin-top: 12px; font-size: 12px; color: #475569; display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; justify-content: space-between;"><span>Accuracy:</span><span style="font-family: monospace; font-weight: 700; color: #0F172A;">97.69%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Precision:</span><span style="font-family: monospace; color: #0F172A;">97.82%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Recall:</span><span style="font-family: monospace; color: #0F172A;">97.80%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam F1:</span><span style="font-family: monospace; color: #0F172A;">97.81%</span></div>
+                </div>
+            </div>
+            
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px;">
+                <div style="font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em;">Long-Short Memory</div>
+                <div style="font-size: 16px; font-weight: 700; color: #0F172A; margin-top: 4px;">LSTM</div>
+                <div style="margin-top: 12px; font-size: 12px; color: #475569; display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; justify-content: space-between;"><span>Accuracy:</span><span style="font-family: monospace; font-weight: 700; color: #0F172A;">98.48%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Precision:</span><span style="font-family: monospace; color: #0F172A;">98.38%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Recall:</span><span style="font-family: monospace; color: #0F172A;">98.74%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam F1:</span><span style="font-family: monospace; color: #0F172A;">98.56%</span></div>
+                </div>
+            </div>
+            
+            <div style="background: #F0F9FF; border: 2px solid #BAE6FD; border-radius: 14px; padding: 18px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 11px; font-weight: 700; color: #0369A1; text-transform: uppercase; letter-spacing: 0.05em;">Deployed Model</div>
+                    <span style="background: #0284C7; color: #FFFFFF; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">TOP BENCHMARK</span>
+                </div>
+                <div style="font-size: 16px; font-weight: 700; color: #0F172A; margin-top: 4px;">GRU Model</div>
+                <div style="margin-top: 12px; font-size: 12px; color: #0369A1; display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; justify-content: space-between;"><span>Accuracy:</span><span style="font-family: monospace; font-weight: 700; color: #0284C7; font-size: 13px;">98.65%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Precision:</span><span style="font-family: monospace; font-weight: 700; color: #0284C7;">98.75%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam Recall:</span><span style="font-family: monospace; font-weight: 700; color: #0284C7;">98.69%</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span>Spam F1:</span><span style="font-family: monospace; font-weight: 700; color: #15803D; font-size: 13px;">98.72%</span></div>
+                </div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
         
-    with b_col2:
-        st.markdown("""
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Long-Short Memory</div>
-            <h4 class="text-base font-bold text-slate-800 mt-1">LSTM</h4>
-            <div class="mt-3 space-y-1.5 text-xs">
-                <div class="flex justify-between"><span>Accuracy:</span><span class="font-mono font-bold">98.48%</span></div>
-                <div class="flex justify-between"><span>Spam Precision:</span><span class="font-mono">98.38%</span></div>
-                <div class="flex justify-between"><span>Spam Recall:</span><span class="font-mono">98.74%</span></div>
-                <div class="flex justify-between"><span>Spam F1:</span><span class="font-mono">98.56%</span></div>
-            </div>
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #64748B; line-height: 1.5;">
+            <b>Model Specifications:</b> Vocabulary: 7,000 top words • Sequence Length: 500 tokens (padded post) • Embedding: 32 dimensions • GRU: 64 units • Optimizer: Adam • Loss: Binary Crossentropy
         </div>
-        """, unsafe_allow_html=True)
-        
-    with b_col3:
-        st.markdown("""
-        <div class="bg-sky-50 border-2 border-sky-300 rounded-xl p-4">
-            <div class="flex justify-between items-center">
-                <div class="text-[11px] font-bold text-sky-700 uppercase tracking-wider">Deployed Model</div>
-                <span class="bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">TOP BENCHMARK</span>
-            </div>
-            <h4 class="text-base font-bold text-slate-900 mt-1">GRU Model</h4>
-            <div class="mt-3 space-y-1.5 text-xs">
-                <div class="flex justify-between"><span>Accuracy:</span><span class="font-mono font-bold text-sky-800">98.65%</span></div>
-                <div class="flex justify-between"><span>Spam Precision:</span><span class="font-mono font-bold text-sky-800">98.75%</span></div>
-                <div class="flex justify-between"><span>Spam Recall:</span><span class="font-mono font-bold text-sky-800">98.69%</span></div>
-                <div class="flex justify-between"><span>Spam F1:</span><span class="font-mono font-bold text-emerald-700">98.72%</span></div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    st.markdown("<div class='mt-6 pt-4 border-t border-slate-200 text-xs text-slate-600'>", unsafe_allow_html=True)
-    st.markdown("<b>Model Specifications:</b> Vocabulary: 7,000 top words • Sequence Length: 500 tokens (padded post) • Embedding: 32 dimensions • GRU: 64 units • Optimizer: Adam • Loss: Binary Crossentropy")
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    st.markdown("</div>", unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
