@@ -69,7 +69,6 @@ Threat Probability (0.0 to 1.0) ──> [ Ham (<0.5) | Spam (>=0.5) ]
 - **Aesthetic Palette:** Crafted with an off-white canvas (`#F8FAFC`), crisp sky-blue action accents (`#0284C7`), and calming light-green indicators (`#16A34A` / `#DCFCE7`) for authentic enterprise correspondence.
 - **Reading & Analysis Animation:** When an email is submitted, the UI runs a realistic 5–8 second multi-phase scanning animation simulating token parsing, stopword extraction, recurrent gate passage, and probability calculation.
 - **Real-Time Diagnostics:** Displays extracted spam keywords (e.g., `account`, `unauthorized`, `urgent`, `verify`, `viagra`, `lottery`), character/word lengths, embedded URL counts, and risk gauges.
-- **Batch CSV Screening:** Upload a CSV file of emails to screen hundreds of records at once and export results directly.
 - **Silent Cloud Sleep Prevention:** Features an embedded HTTP health endpoint (`/ping` & `/health` on port 8502) and self-ping daemon that prevents cold-boot hibernation on cloud hosting platforms.
 
 ---

@@ -421,9 +421,8 @@ if not MODEL_READY:
 # -----------------------------------------------------------------------------
 # 6. MAIN WORKSPACE TABS
 # -----------------------------------------------------------------------------
-tab_scan, tab_batch, tab_bench = st.tabs([
+tab_scan, tab_bench = st.tabs([
     "🔍 Threat Scanner",
-    "📂 Batch Screening",
     "📊 Model Performance"
 ])
 
@@ -626,73 +625,7 @@ with tab_scan:
         st.markdown("</div>", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# TAB 2: BATCH SCREENING
-# -----------------------------------------------------------------------------
-with tab_batch:
-    st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-    st.markdown("<h3 class='text-lg font-bold text-slate-900 mb-1'>Batch Email Screening</h3>", unsafe_allow_html=True)
-    st.markdown("<p class='text-xs text-slate-500 mb-4'>Upload a CSV file containing an email column to screen multiple records simultaneously.</p>", unsafe_allow_html=True)
-    
-    upload_file = st.file_uploader("Upload CSV", type=["csv"], label_visibility="collapsed")
-    
-    if upload_file is not None:
-        try:
-            b_df = pd.read_csv(upload_file)
-            st.success(f"File loaded successfully: {len(b_df)} records found.")
-            
-            cand_cols = [c for c in b_df.columns if c.lower() in ["text", "email", "body", "content", "message"]]
-            sel_col = cand_cols[0] if cand_cols else b_df.columns[0]
-            col_target = st.selectbox("Select email column:", b_df.columns, index=b_df.columns.get_loc(sel_col))
-            
-            if st.button("🚀 Run Batch Classification"):
-                p_bar = st.progress(0)
-                preds = []
-                probs = []
-                
-                total_r = len(b_df)
-                for i, row in b_df.iterrows():
-                    out = run_inference(str(row[col_target]))
-                    preds.append(out["verdict"])
-                    probs.append(round(out["prob"], 4))
-                    if (i + 1) % max(1, total_r // 20) == 0:
-                        p_bar.progress((i + 1) / total_r)
-                        
-                p_bar.progress(1.0)
-                b_df["Prediction"] = preds
-                b_df["Spam_Probability"] = probs
-                
-                spam_cnt = (b_df["Prediction"] == "Spam").sum()
-                ham_cnt = (b_df["Prediction"] == "Ham").sum()
-                
-                m1, m2, m3 = st.columns(3)
-                m1.metric("Total Scanned", total_r)
-                m2.metric("Spam Detections", f"{spam_cnt} ({spam_cnt/total_r*100:.1f}%)")
-                m3.metric("Clean Messages", f"{ham_cnt} ({ham_cnt/total_r*100:.1f}%)")
-                
-                st.dataframe(b_df.head(50), use_container_width=True)
-                
-                csv_b = b_df.to_csv(index=False).encode("utf-8")
-                st.download_button(
-                    label="📥 Download Classified CSV",
-                    data=csv_b,
-                    file_name="sentinel_batch_results.csv",
-                    mime="text/csv"
-                )
-        except Exception as ex:
-            st.error(f"Error processing CSV: {ex}")
-    else:
-        st.markdown("""
-        <div class="text-center py-10">
-            <div class="text-4xl mb-2">📁</div>
-            <div class="text-sm font-bold text-slate-800">No Dataset Uploaded</div>
-            <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1">Upload any CSV file containing email text to perform bulk classification.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    st.markdown("</div>", unsafe_allow_html=True)
-
-# -----------------------------------------------------------------------------
-# TAB 3: MODEL PERFORMANCE & BENCHMARKS
+# TAB 2: MODEL PERFORMANCE & BENCHMARKS
 # -----------------------------------------------------------------------------
 with tab_bench:
     st.markdown("<div class='app-card'>", unsafe_allow_html=True)
